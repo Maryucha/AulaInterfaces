@@ -2,7 +2,6 @@ package br.com.mariani.modelo;
 
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Set;
 
 /**
  *
@@ -60,10 +59,10 @@ public abstract class Conta {
     }
 
     public void carregaConta() {
-        this.setNumConta(gerador.nextInt());
-        System.out.print("O número da conta é: " + this.getNumConta());
-        this.setAgencia(gerador.nextInt());
-        System.out.print("O número da conta é: " + this.getAgencia());
+        this.setNumConta(gerador.nextInt(10000));
+        System.out.println("O número da conta é: " + this.getNumConta());
+        this.setAgencia(gerador.nextInt(10000));
+        System.out.println("O número da conta é: " + this.getAgencia());
         System.out.println("Agora você deve realizar um depósito para iniciar sua conta!");
     }
     

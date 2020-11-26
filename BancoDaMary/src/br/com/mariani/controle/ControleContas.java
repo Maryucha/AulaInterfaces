@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class ControleContas {
 
     private List<Cliente> listaClientes = new ArrayList<>();
-    private List<Conta> listaContas= new ArrayList<>();
+    private List<Conta> listaContas = new ArrayList<>();
     Cliente cliente = new Cliente();
     private Scanner entrada = new Scanner(System.in);
     private Integer menu = 0;
@@ -23,7 +23,7 @@ public class ControleContas {
         System.out.println("-----------------NOVO CLIENTE------------");
         listaClientes.add(cliente.criaCliente());
     }
-  
+
     private void mostarClientes() {
         System.out.println("------------Clientes CADASTRADOS----------");
         if (listaClientes.isEmpty()) {
@@ -34,8 +34,8 @@ public class ControleContas {
             }
         }
     }
-    
-    public void mostrarContaCliente(){
+
+    public void mostrarContaCliente() {
         System.out.println("------------CONTA DO CLIENTE----------");
         System.out.print("Digite o nome do Cliente: ");
         String nome = entrada.nextLine();
@@ -46,7 +46,7 @@ public class ControleContas {
         }
     }
 
-    private void desvincularCliente() {        
+    private void desvincularCliente() {
         System.out.print("Digite o nome do Cliente: ");
         String nome = entrada.nextLine();
         for (int i = 0; i < listaClientes.size(); i++) {
@@ -54,6 +54,19 @@ public class ControleContas {
                 listaClientes.remove(i);
             } else {
                 System.out.println("Cliente não encontrado!");
+            }
+        }
+    }
+
+    private void validarCliente() {
+        System.out.print("Digite o nome do Cliente: ");
+        String nome = entrada.nextLine();
+        for (int i = 0; i < listaClientes.size(); i++) {
+            if (nome.equalsIgnoreCase(listaClientes.get(i).getNome())) {
+                cliente.cadConta();
+            } else {
+                System.out.println("Cliente não encontrado!");
+                cadCliente();             
             }
         }
     }
@@ -83,17 +96,17 @@ public class ControleContas {
                         mostarClientes();
                         break;
                     case 3:
-                        cliente.cadConta();
+                        validarCliente();
                         break;
                     case 4:
                         mostrarContaCliente();
                         break;
                     case 5:
                         desvincularCliente();
-                        break;    
+                        break;
                     case 6:
                         System.out.println("Voltar para menu principal.");
-                        break;    
+                        break;
                     default:
                         System.out.println("Escolha uma opção Válida!");
                         break;

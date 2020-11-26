@@ -3,7 +3,6 @@ package br.com.mariani.modelo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 
 /**
  *
@@ -60,27 +59,25 @@ public class Cliente {
         this.listaContas = listaContas;
     }
 
-    public void carregaCliente() {
-        System.out.print("Digite o nome do Cliente: ");
-        this.setNome(entrada.nextLine());
-        System.out.print("Digite o CPF: ");
-        this.setCpf(entrada.nextLine());
-        cadConta();
-
-    }
-
     public Cliente criaCliente() {
         Cliente cliente = new Cliente();
         cliente.carregaCliente();
         return cliente;
     }
 
-    public void imprimeCliente() {
-        System.out.println("---------------------------CLIENTE--------------------------");
-        System.out.println("NOME [" + this.getNome() + "] | CPF [" + this.getCpf() + "]");
-    }
+    public void carregaCliente() {
+        System.out.print("Digite o nome do Cliente: ");
+        this.setNome(entrada.nextLine());
+        System.out.print("Digite o CPF: ");
+        this.setCpf(entrada.nextLine());
+//        /**
+//         * atenção
+//         */
+        cadConta();
 
+    }
     public void cadConta() {
+
         System.out.println("------------------CADASTRO DA CONTA------------");
         int escolha = 0;
         System.out.print("Escolha o tipo de conta:  "
@@ -104,6 +101,11 @@ public class Cliente {
                 System.out.println("Escolha uma opção válida!");
                 break;
         }
+    }
+
+    public void imprimeCliente() {
+        System.out.println("---------------------------CLIENTE--------------------------");
+        System.out.println("NOME [" + this.getNome() + "] | CPF [" + this.getCpf() + "]");
     }
 
     public Conta criaContaCorrente() {
