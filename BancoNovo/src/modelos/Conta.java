@@ -1,4 +1,4 @@
-package br.com.mariani.modelo;
+package modelos;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -25,8 +25,6 @@ public abstract class Conta {
         this.agencia = agencia;
         this.tipoConta = tipoConta;
     }
-
- 
 
     public String getTipoConta() {
         return tipoConta;
@@ -62,18 +60,17 @@ public abstract class Conta {
 
     public void carregaConta() {
         this.setNumConta(gerador.nextInt(10000));
-        System.out.println("O número da conta é: " + this.getNumConta());
+        System.out.println("O número da CONTA é: " + this.getNumConta());
         this.setAgencia(gerador.nextInt(10000));
-        System.out.println("O número da conta é: " + this.getAgencia());
+        System.out.println("O número da AGENCIA é: " + this.getAgencia());
         System.out.println("Agora você deve realizar um depósito para iniciar sua conta!");
     }
-    
-    
+      
     public void imprimeConta(){
         System.out.println("-----------------CONTA---------------");
         System.out.println("TIPO DE CONTA ["+this.getTipoConta()+"] | NÚMERO DA CONTA ["+this.getNumConta()+"] | AGENCIA ["+this.getAgencia()+"] | SALDO ["+this.getSaldo()+"]");
     }
-
+    
     public abstract void sacar(double valor);
 
     public abstract void depositar(double valor);

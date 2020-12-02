@@ -2,6 +2,7 @@ package br.com.mariani.controle;
 
 import br.com.mariani.modelo.Cliente;
 import br.com.mariani.modelo.Conta;
+import br.com.mariani.modelo.ContaCorrente;
 import java.awt.HeadlessException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,6 @@ import java.util.Scanner;
 public class ControleContas {
 
     private List<Cliente> listaClientes = new ArrayList<>();
-    private List<Conta> listaContas = new ArrayList<>();
     Cliente cliente = new Cliente();
     private Scanner entrada = new Scanner(System.in);
     private Integer menu = 0;
@@ -42,6 +42,8 @@ public class ControleContas {
         for (int i = 0; i < listaClientes.size(); i++) {
             if (nome.equalsIgnoreCase(listaClientes.get(i).getNome())) {
                 listaClientes.listIterator(i).next().getListaContas().listIterator().next().imprimeConta();
+            } else {
+                System.out.println("Cliente não cadastrado!");
             }
         }
     }
@@ -58,7 +60,7 @@ public class ControleContas {
         }
     }
 
-    private void validarCliente() {
+    private void cadNovaConta() {
         System.out.print("Digite o nome do Cliente: ");
         String nome = entrada.nextLine();
         for (int i = 0; i < listaClientes.size(); i++) {
@@ -66,12 +68,50 @@ public class ControleContas {
                 cliente.cadConta();
             } else {
                 System.out.println("Cliente não encontrado!");
-                cadCliente();             
+                cadCliente();
             }
         }
     }
+    
+      public Cliente buscarCliente(Cliente cliente) {
+        System.out.print("Digite o cpf do Cliente: ");
+        String cpf = entrada.nextLine();
+        for (int i = 0; i < listaClientes.size(); i++) {
+            if (cpf.equalsIgnoreCase(listaClientes.get(i).getCpf())) {
+                System.out.println("Cliente encontradao");
+                cliente = listaClientes.get(i);
+            } else {
+                System.out.println("Cliente não cadastrado!");
+            }
+        }
+        return cliente;
+    }
 
-    public void agenciaBancaria() {
+    public Conta buscaConta(Cliente cliente) {
+        Conta cc = new ContaCorrente();
+        buscarCliente(cliente);
+        for (int i = 0; i < listaClientes.size(); i++) {
+            if (listaClientes.get(i).getNome() == cliente.getNome()) {
+                cc = listaClientes.get(i).pegarConta();
+                return cc;
+            } else {
+                System.out.println("Conta não encontrada");
+
+            }
+        }
+        return null;
+    }
+    
+    public void vaiDepositar(Cliente cliente, Conta conta){
+        double saldo=0;
+        buscaConta(cliente).depositar(5000);
+        for(int i=0;i<listaClientes.size();i++){
+            saldo= listaClientes.listIterator(i).next().pegarConta().getSaldo();
+            System.out.println("saldo "+saldo);
+        }
+    }
+
+    public void gerencia() {
         do {
             try {
                 System.out.println("==========MENU BANCO==========="
@@ -96,7 +136,7 @@ public class ControleContas {
                         mostarClientes();
                         break;
                     case 3:
-                        validarCliente();
+                        cadNovaConta();
                         break;
                     case 4:
                         mostrarContaCliente();
@@ -105,6 +145,9 @@ public class ControleContas {
                         desvincularCliente();
                         break;
                     case 6:
+                        vaiDepositar(cliente, conta);
+                        break;
+                    case 7:
                         System.out.println("Voltar para menu principal.");
                         break;
                     default:
@@ -114,5 +157,8 @@ public class ControleContas {
             }
         } while (menu != 6);
     }
+
+  
+    
 
 }

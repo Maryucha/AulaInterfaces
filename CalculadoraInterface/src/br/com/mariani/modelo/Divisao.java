@@ -26,9 +26,9 @@ import java.util.Scanner;
  *
  * @author maryucha
  */
-public class Divisao implements IOperacaoMatematica, IImprimir{
+public class Divisao implements IOperacaoMatematica, IImprimir {
 
-     private double num1, num2, resutado;
+    private double num1, num2, resutado;
     private Scanner entrada = new Scanner(System.in);
 
     public Divisao() {
@@ -66,23 +66,27 @@ public class Divisao implements IOperacaoMatematica, IImprimir{
 
     @Override
     public double calcular() {
-        System.out.println("---------------SOMA----------------");
-        System.out.print("Digite o número 1: ");
-        this.setNum1(entrada.nextDouble());
-        entrada.nextLine();
-        System.out.print("Digite o número 2: ");
-        this.setNum2(entrada.nextDouble());
-        entrada.nextLine();
-        this.setResutado(this.getNum1() / this.getNum2());
-
+        try {
+            
+            System.out.println("---------------DIVISÃO----------------");
+            System.out.print("Digite o número 1: ");
+            this.setNum1(entrada.nextDouble());
+            entrada.nextLine();
+            System.out.print("Digite o número 2: ");
+            this.setNum2(entrada.nextDouble());
+            entrada.nextLine();
+            this.setResutado(this.getNum1() / this.getNum2());
+            
+        } catch ( e) {
+            System.out.println("Não é possovel dividir por zero!");
+        }
         return resutado;
-
     }
 
     @Override
     public void mostrarValor() {
         System.out.println("-------------MOSTRAR CONTA-----------");
-        System.out.println("["+this.getNum1()+"] / ["+this.getNum2()+"] = ["+this.getResutado()+"]");
+        System.out.println("[" + this.getNum1() + "] / [" + this.getNum2() + "] = [" + this.getResutado() + "]");
     }
-    
+
 }

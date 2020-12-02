@@ -1,7 +1,5 @@
-package br.com.mariani.modelo;
+package modelos;
 
-import br.com.mariani.controle.ControleAutenticacao;
-import br.com.mariani.interfaces.IAutenticavel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -10,11 +8,10 @@ import java.util.Scanner;
  *
  * @author maryucha
  */
-public class Cliente extends ControleAutenticacao implements IAutenticavel {
+public class Cliente {
 
     private String nome;
     private String Cpf;
-    private ControleAutenticacao autenticador;
     private Scanner entrada = new Scanner(System.in);
     private static List<Conta> listaContas = new ArrayList<>();
 
@@ -26,7 +23,6 @@ public class Cliente extends ControleAutenticacao implements IAutenticavel {
         this.nome = nome;
         this.Cpf = Cpf;
         this.listaContas = listaContas;
-        this.autenticador = new ControleAutenticacao();
     }
 
     public String getNome() {
@@ -56,6 +52,7 @@ public class Cliente extends ControleAutenticacao implements IAutenticavel {
     public Cliente criaCliente() {
         Cliente cliente = new Cliente();
         cliente.carregaCliente();
+        System.out.println("Cliente cadastrado com Sucesso!");
         return cliente;
     }
 
@@ -64,23 +61,19 @@ public class Cliente extends ControleAutenticacao implements IAutenticavel {
         this.setNome(entrada.nextLine());
         System.out.print("Digite o CPF: ");
         this.setCpf(entrada.nextLine());
-        System.out.print("Digite a senha: ");
-        this.setSenha(entrada.nextLine());
 //        /**
 //         * atenção
 //         */
         cadConta();
-
     }
 
     public void cadConta() {
-
         System.out.println("------------------CADASTRO DA CONTA------------");
         int escolha = 0;
         System.out.print("Escolha o tipo de conta:  "
                 + "\n1 Conta Corrente: "
                 + "\n2 Conta Poupança: "
-                + "\n--------------------------------\n");
+                + "\n-----------------------------------------------------\n");
         escolha = entrada.nextInt();
         entrada.nextLine();
         switch (escolha) {
@@ -105,38 +98,34 @@ public class Cliente extends ControleAutenticacao implements IAutenticavel {
         System.out.println("NOME [" + this.getNome() + "] | CPF [" + this.getCpf() + "]");
     }
 
+    public Conta buscaConta() {
+        Conta conta=null;
+        System.out.print("Digite o tipo da conta: ");
+        String tipoContaLista = entrada.nextLine();  
+        for (int i = 0; i < listaContas.size(); i++) {
+            if(tipoContaLista.equalsIgnoreCase(listaContas.get(i).getTipoConta())){
+                 conta = listaContas.get(i);
+                   return conta;
+            }else{
+                 conta = listaContas.get(i);
+                    return conta;
+            }
+        }
+        return null;
+    }
+
     public Conta criaContaCorrente() {
         Conta contaCorrente = new ContaCorrente();
         contaCorrente.carregaConta();
-        contaCorrente.setTipoConta("CONTA CORRENTE");
+        contaCorrente.setTipoConta("001");
         return contaCorrente;
     }
 
     public Conta criaContaPoupanca() {
         Conta contaPoupanca = new ContaPoupanca();
         contaPoupanca.carregaConta();
-        contaPoupanca.setTipoConta("CONTA POUPANÇA");
+        contaPoupanca.setTipoConta("002");
         return contaPoupanca;
     }
 
-    @Override
-    public boolean autentica(String senha) {
-        return this.autenticador.autentica(senha);
-    }
-
-    public Conta pegarConta() {
-        System.out.println("Qual a conta deseja: ");
-        String tipoConta = entrada.nextLine();
-        for (int i = 0; i < listaContas.size(); i++) {
-            if (tipoConta.equalsIgnoreCase(listaContas.get(i).getTipoConta())){
-               return listaContas.get(i);  
-            }else{
-                System.out.println("Conta não registrada!");
-               
-            }
-        }
-       return null; 
-    } 
 }
-
-

@@ -49,12 +49,13 @@ public class ControleCalculadora {
                         sb.mostrarValor();
                         break;
                     case 3:
-                        dv.calcular();
-                        dv.mostrarValor();
-                        break;
-                    case 4:
                         mt.calcular();
                         mt.mostrarValor();
+                        break;
+                    case 4:
+                        dv.calcular();
+                        dv.mostrarValor();
+
                         break;
                     case 5:
                         ex.calcular();
