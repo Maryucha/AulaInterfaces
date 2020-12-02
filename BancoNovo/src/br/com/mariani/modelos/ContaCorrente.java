@@ -1,19 +1,19 @@
-package modelos;
+package br.com.mariani.modelos;
 
-import interfaces.ITributavel;
+import br.com.mariani.interfaces.ITributavel;
 import java.util.Scanner;
 
 /**
  *
  * @author maryucha
  */
-public class ContaPoupanca extends Conta implements ITributavel {
+public class ContaCorrente extends Conta implements ITributavel {
 
     private Scanner entrada = new Scanner(System.in);
 
     @Override
     public void sacar(double saque) {
-         double novoSaldo = 0;
+        double novoSaldo = 0;
         System.out.println("--------SACAR----------");
         System.out.println("EXTRATO: " + super.getSaldo());
         if (super.getSaldo() > saque) {
@@ -23,6 +23,7 @@ public class ContaPoupanca extends Conta implements ITributavel {
         } else {
             System.out.println("Seu saldo é insuficiente");
         }
+
     }
 
     @Override
@@ -36,7 +37,7 @@ public class ContaPoupanca extends Conta implements ITributavel {
 
     @Override
     public void transfetir(Cliente destino, double valor) {
-       if (super.getSaldo() >= (valor + 4)) {
+        if (super.getSaldo() >= (valor + 4)) {
             double saldo = super.getSaldo();
             saldo -= (valor + 4);
             super.setSaldo(saldo);
@@ -44,14 +45,13 @@ public class ContaPoupanca extends Conta implements ITributavel {
         } else {
             System.out.println("Saldo insuficiente!");
         }
-
         
     }
 
     @Override
     public void calcularImposto() {
         System.out.println("--------------DECLARAÇÃO DE IMPOSTO--------------");
-        double valorImposto = 20;
+        double valorImposto = 100;
         double novoSaldo = 0;
         if (super.getSaldo() >= valorImposto) {
             novoSaldo = super.getSaldo() - valorImposto;

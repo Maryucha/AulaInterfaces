@@ -1,11 +1,11 @@
-package controle;
+package br.com.mariani.controle;
 
 import java.awt.HeadlessException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import modelos.Cliente;
-import modelos.Conta;
+import br.com.mariani.modelos.Cliente;
+import br.com.mariani.modelos.Conta;
 
 /**
  *

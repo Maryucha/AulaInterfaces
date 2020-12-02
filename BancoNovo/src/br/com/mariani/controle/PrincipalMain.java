@@ -1,4 +1,4 @@
-package controle;
+package br.com.mariani.controle;
 
 /**
  *

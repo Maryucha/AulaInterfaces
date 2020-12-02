@@ -1,4 +1,4 @@
-package modelos;
+package br.com.mariani.modelos;
 
 import java.util.Random;
 import java.util.Scanner;
