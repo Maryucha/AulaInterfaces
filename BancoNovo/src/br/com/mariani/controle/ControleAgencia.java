@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import br.com.mariani.modelos.Cliente;
-import br.com.mariani.modelos.Conta;
 
 /**
  *
@@ -15,6 +14,7 @@ public class ControleAgencia {
 
     private Scanner entrada = new Scanner(System.in);
     private static List<Cliente> listaClientes = new ArrayList<>();
+    Cliente cli = new Cliente();
     private Integer menu = 0;
 
     public void agencia() {
@@ -26,9 +26,7 @@ public class ControleAgencia {
                         + "\n3 Cadastrar Nova Conta: "
                         + "\n4 Mostrar Contas: "
                         + "\n5 Desvincular Cliente: "
-                        + "\n6 Depositar: "
-                        + "\n7 Transferir: "
-                        + "\n8 Sacar: "
+                        + "\n6 Terminal Eletrônico: "
                         + "\n9 Voltar: "
                         + "\n------------------------------------------------------\n");
                 menu = entrada.nextInt();
@@ -39,7 +37,7 @@ public class ControleAgencia {
             if (menu != null) {
                 switch (menu) {
                     case 1:
-                        cadCliente();
+                        listaClientes.add(cli.criaCliente());
                         break;
                     case 2:
                         mostrarClientes();
@@ -54,28 +52,18 @@ public class ControleAgencia {
                         desvincularCliente();
                         break;
                     case 6:
-                        deposito(bucarCliente());
+                        CaixaEletronico caixa = new CaixaEletronico();
+                        caixa.terminalEletronico();
                         break;
                     case 7:
-                        transferencia(bucarCliente());
+                        System.out.println("Até mais!");
                         break;
-
-                    case 8:
-                        sacar(bucarCliente());
-                        break;
-
                     default:
                         System.out.println("Escolha uma opção válida!");
                         break;
                 }
             }
-        } while (menu != 9);
-    }
-
-    public void cadCliente() {
-        System.out.println("--------CADASTRO DE NOVO CLIENTE----------");
-        Cliente cliente = new Cliente();
-        listaClientes.add(cliente.criaCliente());
+        } while (menu != 7);
     }
 
     public void mostrarClientes() {
@@ -98,7 +86,6 @@ public class ControleAgencia {
     public void mostrarContaPorCliente() {
         System.out.println("------------CONTAS DO CLIENTE----------");
         Cliente cliente = bucarCliente();
-        
         do {
             for (int i = 0; i < cliente.getListaContas().size(); i++) {
                 cliente.getListaContas().get(i).imprimeConta();
@@ -118,7 +105,7 @@ public class ControleAgencia {
                 return;
             } else {
                 System.out.println("Cliente não encontrado!");
-                cadCliente();
+                cliente.criaCliente();
             }
         }
     }
@@ -133,34 +120,6 @@ public class ControleAgencia {
                 System.out.println("Cliente não encontrado!");
             }
         }
-    }
-
-    public void deposito(Cliente cliente) {
-        System.out.println("-----------DEPOSITAR-----------");
-        Conta conta = cliente.buscaConta();
-        System.out.print("Digite o valor que deseja depositar: ");
-        conta.depositar(entrada.nextDouble());
-        System.out.println("Depósito realizado com sucesso!");
-
-    }
-
-    public void transferencia(Cliente cliente) {
-        System.out.println("--------------TRANSFERIR-----------------");
-        Conta conta = cliente.buscaConta();
-        System.out.print("Digite o valor que deseja Transferir ");
-        double valor = entrada.nextDouble();
-        conta.transfetir(cliente, valor);
-        conta.setSaldo(conta.getSaldo() + valor);
-        System.out.println("Transferência realizada com sucesso!");
-
-    }
-
-    private void sacar(Cliente cliente) {
-        System.out.println("-------------SACAR-------------------");
-        Conta conta = cliente.buscaConta();
-        System.out.print("Digite o valor que deseja Sacar ");
-        conta.sacar(entrada.nextDouble());
-        entrada.nextLine();
     }
 
     public Cliente bucarCliente() {
@@ -179,9 +138,7 @@ public class ControleAgencia {
             } catch (Exception e) {
                 System.out.println("Cliente não encontrado!");
             }
-
         }
         return null;
     }
-
 }
