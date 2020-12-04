@@ -5,7 +5,11 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- *
+ *  Essa classe modela o meu objeto do tipo cliente
+ * ela tem:
+ * Nome
+ * Cpf
+ * listaContas
  * @author maryucha
  */
 public class Cliente {
@@ -48,25 +52,31 @@ public class Cliente {
     public void setListaConta(List<Conta> listaContas) {
         this.listaContas = listaContas;
     }
-
+    /**
+     * Esse método instancia um novo objeto do tipo cliente
+     * e seta seus atribustos chamando o método carrega cliente
+     * @return 
+     */
     public Cliente criaCliente() {
         Cliente cliente = new Cliente();
         cliente.carregaCliente();
         System.out.println("Cliente cadastrado com Sucesso!");
         return cliente;
     }
-
+    /**
+     * método responsavel por setar os atributos do objeto cliente 
+     * e também cadastra a conta para o cliente invocando o cadConta
+     */
     public void carregaCliente() {
         System.out.print("Digite o nome do Cliente: ");
         this.setNome(entrada.nextLine());
         System.out.print("Digite o CPF: ");
         this.setCpf(entrada.nextLine());
-        /**
-         * atenção
-         */
         cadConta();
     }
-
+    /**
+     * Esse método permite que eu escolha o tipo de conta que meu cliente vai receber
+     */
     public void cadConta() {
         System.out.println("------------------CADASTRO DA CONTA------------");
         int escolha = 0;
@@ -92,12 +102,20 @@ public class Cliente {
                 break;
         }
     }
-
+    /**
+     * Esse método imprime os atributos do cliente
+     */
     public void imprimeCliente() {
         System.out.println("---------------------------CLIENTE--------------------------");
         System.out.println("NOME [" + this.getNome() + "] | CPF [" + this.getCpf() + "]");
     }
-
+    /**
+     * Esse método é o responsável pela busca da conta do meu cliente validando
+     * pelo cpf
+     * @OBS pretendo implementar uma validação aqui de que se já existir um determinado 
+     * tipo de conta o cliente não pode cadastrar outra
+     * @return 
+     */
     public Conta buscaConta() {
         Conta conta=null;
         System.out.print("Digite o tipo da conta: ");
@@ -113,14 +131,22 @@ public class Cliente {
         }
         return null;
     }
-
+    
+    /**
+     * Esse método instancia o objeto conta corrente para a lista de contas do cliente
+     * e já seta o tipo da conta;
+     * @return contaCorrente
+     */
     public Conta criaContaCorrente() {
         Conta contaCorrente = new ContaCorrente();
         contaCorrente.carregaConta();
         contaCorrente.setTipoConta("001");
         return contaCorrente;
     }
-
+    /**
+     * Esse método instância o objeto conta corrente para lista de contas do cliente se seta o tipo de conta
+     * @return contaPoupanca
+     */
     public Conta criaContaPoupanca() {
         Conta contaPoupanca = new ContaPoupanca();
         contaPoupanca.carregaConta();

@@ -4,7 +4,7 @@ import br.com.mariani.interfaces.ITributavel;
 import java.util.Scanner;
 
 /**
- *
+ *  Essa classe representa a conta poupança e ela implementa a Interface ITributável e extende a classe conta
  * @author maryucha
  */
 public class ContaPoupanca extends Conta implements ITributavel {

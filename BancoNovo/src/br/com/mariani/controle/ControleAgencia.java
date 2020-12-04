@@ -7,7 +7,9 @@ import java.util.Scanner;
 import br.com.mariani.modelos.Cliente;
 
 /**
- *
+ * 
+ * @version Essa Classe tem o objetivo de encapsular os
+ * métodos referentes as ações da agencia bancária.
  * @author maryucha
  */
 public class ControleAgencia {
@@ -17,6 +19,10 @@ public class ControleAgencia {
     Cliente cli = new Cliente();
     private Integer menu = 0;
 
+    /**
+     * Esse método roda o menu da agencia usando um switch
+     *
+     */
     public void agencia() {
         do {
             try {
@@ -65,7 +71,9 @@ public class ControleAgencia {
             }
         } while (menu != 7);
     }
-
+/**
+ * Esse método retorna todos os clientes e suas contas!
+ */
     public void mostrarClientes() {
         System.out.println("------------Clientes CADASTRADOS----------");
         if (listaClientes.isEmpty()) {
@@ -82,7 +90,11 @@ public class ControleAgencia {
             }
         }
     }
-
+/**
+ * Esse método percorre a lista de clientes através do busca cliente
+ * e trás as contas cadastradas na lista de contas desse cliente.
+ * 
+ */
     public void mostrarContaPorCliente() {
         System.out.println("------------CONTAS DO CLIENTE----------");
         Cliente cliente = bucarCliente();
@@ -94,7 +106,10 @@ public class ControleAgencia {
         } while (cliente.getListaContas().size() < 1);
 
     }
-
+/**
+ * Esse método cadastra uma nova conta para o cliente
+ * @obs: pretendo fazer uma validação da existência do tipo de conta
+ */
     public void cadNovaConta() {
         Cliente cliente = new Cliente();
         System.out.print("Digite o CPF do Cliente: ");
@@ -109,7 +124,9 @@ public class ControleAgencia {
             }
         }
     }
-
+/**
+ * Esse método´percorre a lista de Clientes e remove ele pelo index;
+ */
     public void desvincularCliente() {
         System.out.print("Digite o CPF do Cliente: ");
         String nome = entrada.nextLine();
@@ -121,7 +138,10 @@ public class ControleAgencia {
             }
         }
     }
-
+/**
+ * Esse método busca o meu cliente dentro do listaClientes dessa classe
+ * @return cliente
+ */
     public Cliente bucarCliente() {
         Cliente cliente;
         System.out.print("Digite o CPF do Cliente: ");
