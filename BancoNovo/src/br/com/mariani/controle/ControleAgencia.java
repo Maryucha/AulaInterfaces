@@ -8,8 +8,7 @@ import br.com.mariani.modelos.Cliente;
 
 /**
  * 
- * @version Essa Classe tem o objetivo de encapsular os
- * métodos referentes as ações da agencia bancária.
+ * Essa Classe tem o objetivo de encapsular os métodos referentes as ações da agencia bancária.
  * @author maryucha
  */
 public class ControleAgencia {
