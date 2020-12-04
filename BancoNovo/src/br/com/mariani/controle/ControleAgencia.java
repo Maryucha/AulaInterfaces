@@ -98,6 +98,7 @@ public class ControleAgencia {
     public void mostrarContaPorCliente() {
         System.out.println("------------CONTAS DO CLIENTE----------");
         Cliente cliente = bucarCliente();
+        
         do {
             for (int i = 0; i < cliente.getListaContas().size(); i++) {
                 cliente.getListaContas().get(i).imprimeConta();
@@ -168,7 +169,7 @@ public class ControleAgencia {
         String cpf = entrada.nextLine();
         for (int i = 0; i < listaClientes.size(); i++) {
             try {
-                if (cpf.equalsIgnoreCase(listaClientes.get(i).getCpf())) {
+                if (cpf.equals(listaClientes.get(i).getCpf())) {
                     cliente = listaClientes.get(i);
                     System.out.println("O nome do CLIENTE é [" + cliente.getNome() + "]");
                     return cliente;

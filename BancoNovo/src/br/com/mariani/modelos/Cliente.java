@@ -13,7 +13,7 @@ public class Cliente {
     private String nome;
     private String Cpf;
     private Scanner entrada = new Scanner(System.in);
-    private static List<Conta> listaContas = new ArrayList<>();
+    private List<Conta> listaContas = new ArrayList<>();
 
     public Cliente() {
 
@@ -61,9 +61,9 @@ public class Cliente {
         this.setNome(entrada.nextLine());
         System.out.print("Digite o CPF: ");
         this.setCpf(entrada.nextLine());
-//        /**
-//         * atenção
-//         */
+        /**
+         * atenção
+         */
         cadConta();
     }
 
