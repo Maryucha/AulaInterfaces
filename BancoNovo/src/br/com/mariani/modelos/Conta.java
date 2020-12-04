@@ -75,7 +75,7 @@ public abstract class Conta {
 
     public abstract void depositar(double valor);
 
-    public abstract void transfetir(Cliente destino, double valor);
+    public abstract void transfetir(Cliente destino, Cliente origem, double valor);
     
 }
 

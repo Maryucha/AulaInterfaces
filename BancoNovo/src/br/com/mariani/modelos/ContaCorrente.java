@@ -36,16 +36,16 @@ public class ContaCorrente extends Conta implements ITributavel {
     }
 
     @Override
-    public void transfetir(Cliente destino, double valor) {
-        if (super.getSaldo() >= (valor + 4)) {
-            double saldo = super.getSaldo();
+    public void transfetir(Cliente destino,Cliente origem, double valor) {
+        double saldo = super.getSaldo();
+        if (this.getSaldo() >= (valor + 4)) {
             saldo -= (valor + 4);
             super.setSaldo(saldo);
             System.out.println("Transferencia de R$" + valor + " realizada para " + destino.getNome());
         } else {
             System.out.println("Saldo insuficiente!");
         }
-        
+
     }
 
     @Override

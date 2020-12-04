@@ -27,7 +27,7 @@ public class ControleAgencia {
                         + "\n4 Mostrar Contas: "
                         + "\n5 Desvincular Cliente: "
                         + "\n6 Terminal Eletrônico: "
-                        + "\n9 Voltar: "
+                        + "\n7 Sair: "
                         + "\n------------------------------------------------------\n");
                 menu = entrada.nextInt();
                 entrada.nextLine();

@@ -6,6 +6,7 @@ import java.awt.HeadlessException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  *
@@ -40,7 +41,7 @@ public class CaixaEletronico {
                         deposito(agencia.bucarCliente());
                         break;
                     case 3:
-                        transferencia(agencia.bucarCliente());
+                        transferencia();
                         break;
                     case 4:
                         System.out.println("Voltar para agência!");
@@ -51,8 +52,8 @@ public class CaixaEletronico {
             }
         } while (menu != 4);
     }
-    
-        public void deposito(Cliente cliente) {
+
+    public void deposito(Cliente cliente) {
         System.out.println("-----------DEPOSITAR-----------");
         Conta conta = cliente.buscaConta();
         System.out.print("Digite o valor que deseja depositar: ");
@@ -61,13 +62,20 @@ public class CaixaEletronico {
 
     }
 
-    public void transferencia(Cliente cliente) {
+    public void transferencia() {
         System.out.println("--------------TRANSFERIR-----------------");
-        Conta conta = cliente.buscaConta();
+        System.out.println("CONTA DE ORIGEM: ");
+        Cliente clienteOrigem=agencia.bucarCliente();
+        Conta contaOrigem = clienteOrigem.buscaConta();
+        System.out.println("CONTA DE DESTINO: ");
+        Cliente clienteDestino=agencia.bucarCliente();
+        Conta contaDestino = clienteDestino.buscaConta();
+        
         System.out.print("Digite o valor que deseja Transferir ");
         double valor = entrada.nextDouble();
-        conta.transfetir(cliente, valor);
-        conta.setSaldo(conta.getSaldo() + valor);
+        contaDestino.transfetir(clienteDestino, clienteOrigem, valor);
+        contaDestino.setSaldo(contaDestino.getSaldo() + valor);
+        contaOrigem.setSaldo(contaOrigem.getSaldo()-valor); 
         System.out.println("Transferência realizada com sucesso!");
 
     }
@@ -78,5 +86,10 @@ public class CaixaEletronico {
         System.out.print("Digite o valor que deseja Sacar ");
         conta.sacar(entrada.nextDouble());
         entrada.nextLine();
+    }
+    public Conta entraNaConta(Cliente cliente){
+        System.out.println("--------------SUA CONTA--------------");
+        Conta conta=cliente.buscaConta();
+        return conta;
     }
 }
