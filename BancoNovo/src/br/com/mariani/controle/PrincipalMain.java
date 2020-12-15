@@ -6,7 +6,7 @@ package br.com.mariani.controle;
  * @author maryucha
  */
 public class PrincipalMain {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ControleAgencia agencia =new ControleAgencia();
         agencia.agencia();
     }
